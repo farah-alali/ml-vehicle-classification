@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Classification Report</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+        code {
+            background-color: #f5f5f5;
+            color: #d63384;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.95em;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 font-['Inter',sans-serif]">
+    <div class="container mx-auto px-4 py-8">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">Vehicle Classification Report</h1>
+            <p class="text-xl text-gray-600">Comparison of Machine Learning Models on Vehicle Classification</p>
+        </header>
+
+        <main>
+            <section id="results" class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">Model Performance</h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-gray-200 text-center">
+                                <th class="py-2 px-4 font-semibold text-gray-700">Model</th>
+                                <th class="py-2 px-4 font-semibold text-gray-700">Accuracy</th>
+                                <th class="py-2 px-4 font-semibold text-gray-700">Precision</th>
+                                <th class="py-2 px-4 font-semibold text-gray-700">Recall</th>
+                                <th class="py-2 px-4 font-semibold text-gray-700">F1 Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b text-center">
+                                <td class="py-2 px-4">Logistic Regression</td>
+                                <td class="py-2 px-4">44.6%</td>
+                                <td class="py-2 px-4">41.4%</td>
+                                <td class="py-2 px-4">44.6%</td>
+                                <td class="py-2 px-4">39.9%</td>
+                            </tr>
+                            <tr class="border-b text-center">
+                                <td class="py-2 px-4">Decision Tree</td>
+                                <td class="py-2 px-4">82.2%</td>
+                                <td class="py-2 px-4">82.2%</td>
+                                <td class="py-2 px-4">82.2%</td>
+                                <td class="py-2 px-4">82.2%</td>
+                            </tr>
+                            <tr class="border-b text-center">
+                                <td class="py-2 px-4">Naive Bayes (Multinomial)</td>
+                                <td class="py-2 px-4">11.7%</td>
+                                <td class="py-2 px-4">22.6%</td>
+                                <td class="py-2 px-4">11.7%</td>
+                                <td class="py-2 px-4">7.7%</td>
+                            </tr>
+                            <tr class="border-b text-center">
+                                <td class="py-2 px-4">Naive Bayes (GaussianNB)</td>
+                                <td class="py-2 px-4">31.8%</td>
+                                <td class="py-2 px-4">19.6%</td>
+                                <td class="py-2 px-4">31.8%</td>
+                                <td class="py-2 px-4">20.2%</td>
+                            </tr>
+                            <tr class="border-b text-center">
+                                <td class="py-2 px-4">Naive Bayes (ComplementNB)</td>
+                                <td class="py-2 px-4">20.1%</td>
+                                <td class="py-2 px-4">9.5%</td>
+                                <td class="py-2 px-4">20.1%</td>
+                                <td class="py-2 px-4">12.2%</td>
+                            </tr>
+                            <tr class="text-center">
+                                <td class="py-2 px-4">Naive Bayes (BernoulliNB)</td>
+                                <td class="py-2 px-4">34.1%</td>
+                                <td class="py-2 px-4">33.4%</td>
+                                <td class="py-2 px-4">34.1%</td>
+                                <td class="py-2 px-4">26.9%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="tuning" class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">Hyperparameter Tuning</h2>
+                <p class="text-gray-600 mb-4">
+                    In the hyperparameter tuning process, we identified the optimal parameters for the <span
+                        class="font-bold">Logistic
+                        Regression</span> and <span class="font-bold">Decision Tree</span> models, which achieved the
+                    best performance on this dataset.
+                </p>
+                <p class="text-gray-600 mb-4">
+                    - <span class="font-bold">Logistic Regression</span>: The best parameters were found to be
+                    <code>C=1</code> and
+                    <code>solver='liblinear'</code>. This configuration balances regularization and model complexity,
+                    resulting in
+                    improved stability and performance.
+                <p class="text-gray-600 mb-4">
+                    - <span class="font-bold">Decision Tree</span>: The optimal settings were
+                    <code>criterion='entropy'</code>,
+                    <code>max_depth=None</code>,
+                    <code>min_samples_leaf=1</code>, and
+                    <code>min_samples_split=2</code>. These parameters allow the model to fully grow, leveraging the
+                    entropy
+                    criterion to create pure
+                    splits and achieve strong performance.
+                </p>
+                <p class="text-gray-600 mb-4">
+                    No hyperparameter tuning was conducted for the <span class="font-bold">Naive Bayes</span> models, as
+                    they primarily differ in
+                    their assumptions and
+                    are less dependent on tuning. The optimal settings for <span class="font-bold">Logistic
+                        Regression</span> and <span class="font-bold">Decision Tree</span>
+                    confirmed these
+                    models' suitability for the dataset.
+                </p>
+            </section>
+
+            <section id="analysis" class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">Analysis</h2>
+
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-2">Logistic Regression (39.9% F1-Score)</h3>
+                    <p class="text-gray-600">
+                        Logistic Regression achieved moderate performance with an F1 score of 39.9%. This model assumes
+                        a linear relationship between features and class probabilities, which may limit its ability to
+                        capture the full
+                        complexity of the dataset. The lack of feature interactions and non-linear decision boundaries
+                        could be contributing to its
+                        relatively lower
+                        performance compared to more flexible models.
+                    </p>
+                </div>
+
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-2">Decision Tree (82.2% F1-Score)</h3>
+                    <p class="text-gray-600">
+                        The Decision Tree model performed the best overall, achieving an F1 score of 82.2%. Decision
+                        Trees are well-suited to
+                        this dataset as they can capture non-linear relationships and interactions between features
+                        without assuming any
+                        particular data distribution. While this model demonstrated strong performance, further
+                        improvement might be possible by
+                        using ensemble techniques, such as Random Forests or Gradient Boosting, to reduce variance and
+                        improve robustness.
+                    </p>
+                </div>
+
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-2">Naive Bayes (Best of 26.9% F1-Score)</h3>
+                    <p class="text-gray-600">
+                        The Naive Bayes models struggled with this dataset, showing low F1 scores across all variants.
+                        Naive Bayes classifiers generally assume that features are conditionally independent given
+                        the class, an assumption that is often unrealistic in complex datasets with correlated features.
+                        Furthermore, each
+                        variant makes specific distributional assumptions:
+
+                    <ul class="text-gray-600 list-disc ml-7 mt-2 flex flex-col gap-3">
+                        <li>MultinomialNB is designed for discrete count data, such as word counts in text, making it a
+                            poor
+                            fit for continuous or
+                            categorical features.</li>
+                        <li>GaussianNB assumes that features follow a normal distribution, which may not align with the
+                            actual distributions in this
+                            dataset.</li>
+                        <li>GaussianNB assumes that features follow a normal distribution, which may not align with the
+                            actual distributions in this
+                            dataset.</li>
+                        <li>ComplementNB is typically used for imbalanced text data and underperformed here, likely due
+                            to
+                            the data structure not
+                            matching its intended use.</li>
+                        <li>BernoulliNB, which assumes binary features, showed slightly better performance than the
+                            others,
+                            likely due to the
+                            presence of binary features in the dataset (e.g., one-hot encoded columns).</li>
+                    </ul>
+                    </p>
+                </div>
+            </section>
+
+            <section id="conclusion" class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">Conclusion</h2>
+                <p class="text-gray-600 mb-4">
+                    The analysis shows that Decision Trees are the most effective model for classifying vehicle types in
+                    this dataset,
+                    achieving an F1 score of 82.2% due to their ability to capture non-linear relationships and feature
+                    interactions.
+                    Logistic Regression performed moderately, while Naive Bayes models struggled due to their
+                    assumptions about feature
+                    independence.
+                </p>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>
